@@ -38,28 +38,32 @@ namespace MSMA1
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            ArabaDalCls arabaDalCls = new ArabaDalCls();
-            arabaDalCls.Ekle(new ArabaCls {
-                Marka = tbxMarka.Text,
-                Model = tbxModel.Text,
-                Fiyat = Convert.ToDecimal(tbxFiyat.Text),
-                Aciklama = tbxAciklama.Text
-            });
-            
-            if (String.IsNullOrEmpty(tbxMarka.Text) || String.IsNullOrEmpty(tbxModel.Text) || String.IsNullOrEmpty(tbxFiyat.Text) || String.IsNullOrEmpty(tbxAciklama.Text))
+            if (String.IsNullOrEmpty(tbxMarka.Text) || String.IsNullOrEmpty(tbxModel.Text) || String.IsNullOrEmpty(tbxFiyat.Text) || String.IsNullOrEmpty(tbxAciklama.Text) )
             {
                 MessageBox.Show("Eksik veri girdiniz! Alanların tümünü doldurmak zorunludur!");
             }
-            
-            else
+            else if (tbxFiyat.Text.GetType() == typeof(decimal))
             {
+                ArabaDalCls arabaDalCls = new ArabaDalCls();
+                arabaDalCls.Ekle(new ArabaCls
+                {
+                    Marka = tbxMarka.Text,
+                    Model = tbxModel.Text,
+                    Fiyat = Convert.ToDecimal(tbxFiyat.Text),
+                    Aciklama = tbxAciklama.Text
+                });
                 arabaDgw.DataSource = arabaDalCls.Listeleme();
                 MessageBox.Show("Araç Kaydı Eklendi");
                 tbxMarka.Clear();
                 tbxModel.Clear();
                 tbxFiyat.Clear();
                 tbxAciklama.Clear();
-            }          
+            }
+            else
+            {
+                MessageBox.Show("Fiyatı Kontrol Ediniz!!! (Sayı içermeli!!!)");
+                tbxFiyat.Clear();
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
