@@ -156,6 +156,7 @@
             this.tbxFiyat.Name = "tbxFiyat";
             this.tbxFiyat.Size = new System.Drawing.Size(100, 20);
             this.tbxFiyat.TabIndex = 11;
+            this.tbxFiyat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxFiyat_KeyPress);
             // 
             // label3
             // 

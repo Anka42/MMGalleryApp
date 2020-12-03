@@ -38,11 +38,11 @@ namespace MSMA1
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbxMarka.Text) || String.IsNullOrEmpty(tbxModel.Text) || String.IsNullOrEmpty(tbxFiyat.Text) || String.IsNullOrEmpty(tbxAciklama.Text) )
+             if (String.IsNullOrEmpty(tbxMarka.Text) || String.IsNullOrEmpty(tbxModel.Text) || String.IsNullOrEmpty(tbxFiyat.Text) || String.IsNullOrEmpty(tbxAciklama.Text))
             {
                 MessageBox.Show("Eksik veri girdiniz! Alanların tümünü doldurmak zorunludur!");
             }
-            else if (tbxFiyat.Text.GetType() == typeof(decimal))
+            else
             {
                 ArabaDalCls arabaDalCls = new ArabaDalCls();
                 arabaDalCls.Ekle(new ArabaCls
@@ -58,11 +58,6 @@ namespace MSMA1
                 tbxModel.Clear();
                 tbxFiyat.Clear();
                 tbxAciklama.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Fiyatı Kontrol Ediniz!!! (Sayı içermeli!!!)");
-                tbxFiyat.Clear();
             }
         }
 
@@ -109,6 +104,11 @@ namespace MSMA1
             tbxFiyat.Clear();
             tbxAciklama.Clear();
             lblUnlem.Visible = false;
+        }
+
+        private void tbxFiyat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && e.KeyChar != 8) { e.Handled = true; }
         }
     }
 }

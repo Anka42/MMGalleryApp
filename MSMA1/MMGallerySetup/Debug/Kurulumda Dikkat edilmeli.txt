@@ -1,2 +1,0 @@
-sql server yani .mdf okuyacak program olmalıdır.
-Program Orjinal yerine c diskine kurulmalıdır.(Program kurulum yerini değiştirmeyiniz!!!)
